@@ -13,7 +13,7 @@ This application is used to pull in system logs from Okta to be analyzed, and co
 ### Setting up Oktwah
 Clone the repository to the Wazuh server: 
 
-`git clone --depth 1 --branch v0.0.2 https://[REPLACE WITH YOUR OKTA URL]/oktwah.git`
+`git clone --depth 1 --branch v0.1.0 https://github.com/Manufacturing-Consulting-Concepts/oktwah-py.git`
 
 Run the script:
 
@@ -21,7 +21,7 @@ Run the script:
 
 Enable and start the oktwah sevice:
 ```
-systpassemctl enable oktwah
+systemctl enable oktwah
 systemctl start oktwah
 ```
 Verify that the service has successfully started:

@@ -4,8 +4,31 @@
 
 | Version | Status | Date | Stream |
 |---------|--------|------|--------|
-| v0.0.1  | maintained | 11-23-22 | alpha |
-| v0.0.2  | maintained | 11-23-22 | alpha |
+| v0.0.1  | deprecated | 11-23-22 | alpha |
+| v0.0.2  | deprecated | 11-23-22 | alpha |
+| v0.1.0 | maintained | 11-29-22 | beta | 
+
+---
+### v0.1.0
+
+#### Description
+
+First Beta release of oktwah-py
+
+#### Features
+
+1. Retrieve Okta System logs via API access
+2. Built in Wazuh Decoders and rules for out-of-the-box alert generation
+3. Timed retrieval every 5 minutes (No log streaming at this point.  Pull method used a "now minus 5 minuts" method)
+4. Runs as daemon
+5. Application logging for better debugging and trouble shooting.
+
+#### Changes
+
+1. Improved README for better understanding of application configuration and maintenance.
+2. Fixed systemd file
+3. Improved build.sh script now has rudimentary distro detection to configure application based off of unique distinctions
+
 
 ### v0.0.2
 

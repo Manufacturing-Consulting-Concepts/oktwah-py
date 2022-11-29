@@ -69,7 +69,7 @@ Options to make this work include installing the latest version of Python on the
 
 | Name | Username | 
 |------|-------|
-| David Hoenisch| @mockingjay | 
+| David Hoenisch| @DavidHoenisch | 
 
 
 ## TODO

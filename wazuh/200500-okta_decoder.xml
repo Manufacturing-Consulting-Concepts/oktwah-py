@@ -1,0 +1,5 @@
+<decoder name="oktaDecoder">
+    <program_name>nba_program</program_name>
+    <prematch>{ "actor":</prematch>
+    <plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>

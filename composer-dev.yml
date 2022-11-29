@@ -1,0 +1,7 @@
+services:
+  app:
+    entrypoint:
+    - sleep
+    - infinity
+    image: ubuntu
+  command: "/bin/bash com.docker.devenvironments.com/build.sh"

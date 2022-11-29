@@ -1,0 +1,23 @@
+image: atlassian/default-image:3
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: 'Build and Test'
+          script:
+            - pipe: atlassian/git-secrets-scan:0.6.1
+
+  custom:
+    vulnScan:
+      - step:
+          name: "Build SBOM, and scan application for know vulns"
+          script:
+            - apt update 
+            - apt install bandit python3 python3-pip -y
+            - pip3 install cyclonedx-bom
+            - bandit -r . -o bandit-report -f txt 
+            - cyclonedx-py -r -o SBOM.json --format json
+            - git add bandit-report SBOM.json
+            - git commit -m "Hello from inside the pipeline -> committing artifacts"
+            - git push

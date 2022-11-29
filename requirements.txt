@@ -1,0 +1,10 @@
+certifi
+charset-normalizer
+configparser
+DateTime
+idna
+pathlib
+pytz
+requests
+urllib3
+zope.interface

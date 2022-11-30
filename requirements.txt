@@ -7,4 +7,4 @@ pathlib
 pytz
 requests
 urllib3
-zope.interface
+zope.interfacepip3

@@ -6,7 +6,7 @@ Type=simple
 User=oktwah
 Group=oktwah
 WorkingDirectory=/opt/oktwah/app/
-ExecStart=/usr/bin/python3 /opt/oktwah/app/oktwah.py --conf okta.conf
+ExecStart=/opt/oktwah/app/env/bin/python /opt/oktwah/app/oktwah.py --conf okta.conf
 
 [Install]
 WantedBy=multi-user.target

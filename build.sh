@@ -42,7 +42,7 @@ if [ "$OS" == "Debian" ] || [ "$OS" == "Ubuntu" ]; then
     chmod 755 /opt/oktwah/app/oktwah.py
     chown -R oktwah:wazuh /opt/oktwah/
     chmod 644 /etc/systemd/system/oktwah.service
-    chown -R oktwah:wazuh /etc/okta/ /var/log/okta/ /opt/oktwah/ /var/log/okta/okta.log /var/ossec/logs/okta/okta.log
+    chown -R oktwah:wazuh /etc/okta/ /var/log/okta/ /opt/oktwah/ /var/log/okta/okta.log /var/ossec/logs/okta/
 
 ## If rhel based distro is detected
 elif [ "$OS" == "CentOS" ] || [ "$OS" == "Amazon Linux" ]; then
@@ -50,7 +50,7 @@ elif [ "$OS" == "CentOS" ] || [ "$OS" == "Amazon Linux" ]; then
     cp assets/systemd/oktwah.service /etc/systemd/system/
     systemctl daemon-reload
     systemctl enable oktwah.service
-    mkdir /etc/okta/ /var/log/okta/ /opt/oktwah/
+    mkdir /etc/okta/ /var/log/okta/ /opt/oktwah/ /var/ossec/logs/okta/
     touch /var/log/okta/okta.log
     cp -r app/ /opt/oktwah
     chmod 755 /opt/oktwah/app/oktwah.py
@@ -59,7 +59,6 @@ elif [ "$OS" == "CentOS" ] || [ "$OS" == "Amazon Linux" ]; then
     chown -R oktwah:wazuh /etc/okta/ /var/log/okta/ /opt/oktwah/ /var/log/okta/okta.log /var/ossec/logs/okta/okta.log
 fi
 
-touch /var/log/okta/okta.log
 
 ## copy the files to the correct locations
 cp -r app /opt/oktwah/

@@ -18,7 +18,7 @@ This project is still in beta. MCC is Working to improved the overall reliabilit
 
 Clone the repository to the Wazuh server:
 
-`git clone --depth 1 --branch v0.1.1 https://github.com/Manufacturing-Consulting-Concepts/oktwah-py.git`
+`git clone --depth 1 --branch v0.1.2 https://github.com/Manufacturing-Consulting-Concepts/oktwah-py.git`
 
 Run the script:
 

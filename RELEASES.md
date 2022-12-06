@@ -3,12 +3,13 @@
 ## Status Table
 
 | Version | Status | Date | Stream |
-|---------|--------|------|--------|
+|---------|--|------|--------|
 | v0.0.1  | deprecated | 11-23-22 | alpha |
 | v0.0.2  | deprecated | 11-23-22 | alpha |
-| v0.1.0 | maintained | 11-29-22 | beta | 
-| v0.1.1 | maintained | 11-30-22 | beta/patch |
-| v0.1.2 | maintained | 12-01-22 | beta/patch |
+| v0.1.0 | deprecated | 11-29-22 | beta | 
+| v0.1.1 | deprecated | 11-30-22 | beta/patch |
+| v0.1.2 | deprecated | 12-01-22 | beta/patch |
+| v0.1.3 | maintained | 12-02-22 | beta/patch |
 
 ---
 ### v0.1.0

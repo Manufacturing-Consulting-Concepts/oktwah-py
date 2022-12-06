@@ -26,10 +26,12 @@ import time
 from datetime import datetime
 from datetime import timedelta
 
-# Define global variables
-# time will be equal now minute 5 minutes go, in zulu time
-nowtime = datetime.utcnow() - timedelta(minutes=5)
-ztime = nowtime.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
+def current_time():
+    nowtime = datetime.utcnow() - timedelta(minutes=5)
+    ztime = nowtime.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
+    return ztime
 
 ## Test if Okta log files exists
 def check_okta_log_exists():
@@ -41,6 +43,7 @@ def check_okta_log_exists():
         result = str("created")
     return result
 
+
 def check_program_log_exists():
     if os.path.isfile('/var/log/okta/okta.log'):
         result = str("exists")
@@ -50,28 +53,29 @@ def check_program_log_exists():
         result = str("created")
     return result
 
+
 ## Get Okta Log Data
 def get_okta_log_data(api, url):
-    
     # Get Okta log data using requests package
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': 'SSWS ' + api
     }
-    response = requests.get(url+ztime, headers=headers, timeout=10)
+    response = requests.get(url + ztime, headers=headers, timeout=10)
     data = response.json()
-    
+
     return data
+
 
 if __name__ == "__main__":
 
     while True:
-    # initialize argsparser
+        # initialize argsparser
         parser = argparse.ArgumentParser(description='Okta Integration')
         parser.add_argument('-c', '--conf', help='path to config file', default='/etc/okta/okta.conf')
         args = parser.parse_args()
-        
+
         config_file = args.conf
         path = pathlib.Path(config_file)
 
@@ -80,8 +84,8 @@ if __name__ == "__main__":
         #################
 
         # Initialize loggingo
-        logging.basicConfig(filename='/var/log/okta/okta.log', 
-                            level=logging.INFO, format='%(asctime)s %(message)s', 
+        logging.basicConfig(filename='/var/log/okta/okta.log',
+                            level=logging.INFO, format='%(asctime)s %(message)s',
                             datefmt='%m/%d/%Y %I:%M:%S %p')
 
         # Check if Config file exists
@@ -92,7 +96,8 @@ if __name__ == "__main__":
             api = config['OktaTenant']['api']
             url = config['OktaTenant']['url']
         else:
-            logging.error('Config file does not exist. Please create a config file. Template can be found at: https://someurl.com')
+            logging.error(
+                'Config file does not exist. Please create a config file. Template can be found at: https://someurl.com')
             exit()
 
         # Check if program log file exists, and then log action
@@ -135,4 +140,3 @@ if __name__ == "__main__":
             logging.error('Okta log file write failed.  Error: {}'.format(e))
 
         time.sleep(300)
- 

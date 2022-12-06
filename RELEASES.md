@@ -8,8 +8,25 @@
 | v0.0.2  | deprecated | 11-23-22 | alpha |
 | v0.1.0 | deprecated | 11-29-22 | beta | 
 | v0.1.1 | deprecated | 11-30-22 | beta/patch |
-| v0.1.2 | deprecated | 12-01-22 | beta/patch |
-| v0.1.3 | maintained | 12-02-22 | beta/patch |
+| v0.1.2 | deprecated | 12-06-22 | beta/patch |
+| v0.1.3 | deprecated | 12-06-22 | beta/patch |
+| v0.1.4 | maintained | 12-06-22 | beta/patch |
+
+### v0.1.4
+
+### Description
+
+Patch for time query parmeters
+
+### Features
+1. NA
+
+### Changes
+1. Fixed error in conf file that was causing time parameters to fail
+2. Fixed how time parameters are passed to the API via a new function
+3. removed calls to `os.system()` to improve security
+4. Changed position of while loop to improve performance
+5. General code cleanup to improve readability
 
 ---
 ### v0.1.0

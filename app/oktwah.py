@@ -62,7 +62,7 @@ def get_okta_log_data(api, url):
         'Content-Type': 'application/json',
         'Authorization': 'SSWS ' + api
     }
-    response = requests.get(url + ztime, headers=headers, timeout=10)
+    response = requests.get(url + current_time(), headers=headers, timeout=10)
     data = response.json()
 
     return data

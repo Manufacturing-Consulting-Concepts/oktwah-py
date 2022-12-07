@@ -98,7 +98,8 @@ Options to make this work include installing the latest version of Python on the
 
 ## TODO ##
 
-- [ ] Build update feature that will pull in the latest release from github, update the oktwah application and restart the service.  
-- [ ] Implement threading to ensure better system resource efficiency
+- [ ] Build update feature that will pull in the latest release from github, update the oktwah application and restart the service.
 - [ ] Harden systemd configuration
 - [ ] Establish log file retention/rotation functionality
+- [ ] Have Oktwah provide json formatted application logs
+- [ ] Feature that uses the timestamp of the last log entry to determine where to start pulling logs from. This will prevent duplicate logs from being pulled in.

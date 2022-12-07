@@ -48,3 +48,7 @@ env
 
 # VSCode
 .devcontainer
+
+
+# Application
+okta.conf

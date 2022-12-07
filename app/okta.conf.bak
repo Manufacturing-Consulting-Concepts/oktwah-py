@@ -3,6 +3,7 @@
 # The API key should be generated in the Okta admin console, under Security > API > Tokens
 
 [OktaTenant]
-# Add okta domain
-url = https://[REPLACE WITH YOUR OKTA URL]/api/v1/logs?since=
-api = 
+# Add okta domain (do not include https://)
+
+url = some.oktadomain.com
+api =

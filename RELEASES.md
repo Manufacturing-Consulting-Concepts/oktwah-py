@@ -10,8 +10,38 @@
 | v0.1.1 | deprecated | 11-30-22 | beta/patch |
 | v0.1.2 | deprecated | 12-06-22 | beta/patch |
 | v0.1.3 | deprecated | 12-06-22 | beta/patch |
-| v0.1.4 | maintained | 12-06-22 | beta/patch |
+| v0.1.4 | deprecated | 12-06-22 | beta/patch |
+| v0.2.0 | maintained | 12-07-22 | beta |
 
+### v0.2.0
+
+### Description
+
+This is the official beta release two that introduces in major improvements and
+Functionality.
+
+### Features
+1. "Log streaming" like functionality to give more realtime logs
+2. API rate limiting prevention and handling to prevent 429 errors
+
+### Changes
+1. Removed self constructed URLs in query to Okta API.  Now uses pagination
+   links provided by Okta API in response headers.
+2. Removed now more bounded queries.  This is replaced with polling requests
+3. Better session management to improved robustness and reliability.
+4. Headers now contain the oktwah-py user agent
+
+### Known Issues
+1. The Okta API does not provide a way to get the total number of logs.  This
+   means that the logs will be pulled until the API returns a 429 error.  This
+   is not a problem for most use cases, but if you have a large number of logs
+   in your Okta instance, you may want to consider using the "Log streaming"
+   functionality. This possible issue is mitigated somewhat through our rate limiting prevention mechanisms
+2. In the event of an application crash and a restart, duplicated logs may be pulled. We are working on a possible solutions
+   The api does not keep track of the last log pulled, so we have to rely on the last time stamp of the last log pulled.
+   This is not a perfect solution, but it is the best we can do at this time. We will be implementing this feature in beta 3
+
+   
 ### v0.1.4
 
 ### Description

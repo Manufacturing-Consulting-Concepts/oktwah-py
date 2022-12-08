@@ -79,7 +79,7 @@ Oktwah performs appliction logging straight out of the box.  There are several l
    2. Contents: Application run time logging.
 
 2. The Local Okta System Log
-   1. Location: /var/ossec/okta/okta.log
+   1. Location: `/var/ossec/logs/okta/okta.log`
    2. Contents: JSON objects contain Okta system log entries. This is the local file that Wazuh will ingest. 
 
 ## Important Notes ##

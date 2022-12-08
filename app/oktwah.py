@@ -14,7 +14,7 @@ Version 0.0.1
 Made with the help of our AI overlord, Copilot =).
 
 """
-
+import json
 import os
 import sys
 import pathlib
@@ -26,7 +26,7 @@ import time
 from datetime import datetime
 from datetime import timedelta
 
-# Define requried globals
+# Define required globals
 
 parser = argparse.ArgumentParser(description='Okta Integration')
 parser.add_argument('-c', '--conf', help='path to config file', default='/etc/okta/okta.conf')
@@ -115,7 +115,7 @@ def main():
         url = data.links['next']['url']
         with open("/var/ossec/logs/okta/okta.log", "a+") as f:
             for line in data.json():
-                f.write(str(line) + "\n")
+                f.write(str(json.dumps(line)) + "\n")
         f.close()
 
 

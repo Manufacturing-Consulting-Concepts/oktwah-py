@@ -71,8 +71,8 @@ pip3 install --upgrade pip
 pip3 install -r /opt/oktwah/app/requirements.txt
 
 ## Copy rules and decoders to proper directories
-cp wazuh/200500-okta_rule.xml /var/ossec/ruleset/rules/
-cp wazuh/200500-okta_decoder.xml /var/ossec/ruleset/decoders/
+cp wazuh/200500-okta_rule.xml /var/ossec/etc/rules/
+cp wazuh/200500-okta_decoder.xml /var/ossec/etc/decoders/
 
 ## Restart Wazuh-manager
 systemctl restart wazuh-manager

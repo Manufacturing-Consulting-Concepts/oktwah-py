@@ -11,7 +11,10 @@
 | v0.1.2 | deprecated | 12-06-22 | beta/patch |
 | v0.1.3 | deprecated | 12-06-22 | beta/patch |
 | v0.1.4 | deprecated | 12-06-22 | beta/patch |
-| v0.2.0 | maintained | 12-07-22 | beta |
+| v0.2.0 | deprecated | 12-07-22 | beta |
+| v0.2.1 | deprecated | 12-08-22 | beta/patch | 
+| v0.2.2 | maintained | 12-12-22 | beta/patch | 
+
 
 ### v0.2.0
 

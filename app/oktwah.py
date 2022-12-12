@@ -106,17 +106,19 @@ def main():
     url = f"https://{domain}/api/v1/logs"
     params = {"sortOrder": "ASCENDING"}
     while True:
-        sess = create_session()
-        time.sleep(.7)
-        response = sess.get(url, params=params)
-        data = response
+        try:
+            sess = create_session()
+            time.sleep(.7)
+            response = sess.get(url, params=params)
+            data = response
 
-
-        url = data.links['next']['url']
-        with open("/var/ossec/logs/okta/okta.log", "a+") as f:
-            for line in data.json():
-                f.write(str(json.dumps(line)) + "\n")
-        f.close()
+            url = data.links['next']['url']
+            with open("/var/ossec/logs/okta/okta.log", "a+") as f:
+                for line in data.json():
+                    f.write(str(json.dumps(line)) + "\n")
+            f.close()
+        except KeyError:
+            time.sleep(30)
 
 
 if __name__ == "__main__":

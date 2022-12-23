@@ -8,3 +8,4 @@ pytz
 requests
 urllib3
 zope.interfacepip3
+sqlite3

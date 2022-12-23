@@ -26,6 +26,8 @@ import time
 from datetime import datetime
 from datetime import timedelta
 
+from db_handler.handler import handler
+
 # Define required globals
 
 parser = argparse.ArgumentParser(description='Okta Integration')
@@ -50,6 +52,7 @@ else:
         'Config file does not exist. Please create a config file. Template can be found at: '
         'https://github.com/Manufacturing-Consulting-Concepts/oktwah-py/blob/main/app/okta.conf')
     sys.exit(1)
+
 
 # Functions
 
@@ -96,12 +99,14 @@ def create_session():
         if int(call_remaining) == 10:
             time.sleep(20)
 
-
     s.hooks['response'] = get_logs
 
     return s
 
+
 def main():
+    writer = handler()
+    reader = handler()
 
     url = f"https://{domain}/api/v1/logs"
     params = {"sortOrder": "ASCENDING"}
@@ -115,14 +120,20 @@ def main():
             url = data.links['next']['url']
             with open("/var/ossec/logs/okta/okta.log", "a+") as f:
                 for line in data.json():
-                    f.write(str(json.dumps(line)) + "\n")
+                    lids = line['uuid']  # Path to log id
+                    if lids not in reader.db_reader(lid=lids):
+                        f.write(str(json.dumps(line)) + "\n")
+                        writer.db_writer(lids)
+                    else:
+                        pass
             f.close()
         except KeyError:
-            time.sleep(30)
+            time.sleep(30)  # API rate limiter is breached. Wait 30 seconds and try again.
+        except ConnectionResetError:
+            time.sleep(15)  # Connection reset by peer. Wait 15 seconds and try again.
 
 
 if __name__ == "__main__":
-
 
     # Check if program log file exists
     application_log_file = check_program_log_exists()

@@ -25,10 +25,19 @@ import requests
 import time
 from datetime import datetime
 from datetime import timedelta
+import sqlite3
 
 from db_handler.handler import handler
 
 # Define required globals
+
+conn = sqlite3.connect("seen_ids.db")
+conn.execute('''
+               CREATE TABLE IF NOT EXISTS seen_ids (
+                   id TEXT PRIMARY KEY 
+                   )
+           ''')
+conn.close()
 
 parser = argparse.ArgumentParser(description='Okta Integration')
 parser.add_argument('-c', '--conf', help='path to config file', default='/etc/okta/okta.conf')
@@ -61,7 +70,6 @@ def current_time():
     ztime = nowtime.isoformat() + "Z"
 
     return ztime
-
 
 # Test if Okta log files exists
 def check_okta_log_exists():
@@ -102,7 +110,6 @@ def create_session():
     s.hooks['response'] = get_logs
 
     return s
-
 
 def main():
     writer = handler()

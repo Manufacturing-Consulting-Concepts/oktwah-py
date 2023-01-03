@@ -14,12 +14,13 @@ class handler:
         cursor = conn.cursor()
 
         query = 'SELECT * FROM seen_ids WHERE id = ?'
-        params = lid
+        params = [lid]
 
         cursor.execute(query, params)
+        rows = cursor.fetchall()
         cursor.close()
 
-        return cursor.fetchone()
+        return rows
 
     def db_writer(self, lid: str):
 
@@ -36,8 +37,6 @@ class handler:
         else:
             cursor = conn.cursor()
             query = 'INSERT INTO seen_ids VALUES (?)'
-            params = lid
+            params = [lid]
             cursor.execute(query, params)
             cursor.close()
-
-            return cursor.fetchone()

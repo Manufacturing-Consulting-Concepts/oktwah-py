@@ -71,6 +71,7 @@ def current_time():
 
     return ztime
 
+
 # Test if Okta log files exists
 def check_okta_log_exists():
     if os.path.isfile('/var/ossec/logs/okta/okta.log'):
@@ -111,6 +112,7 @@ def create_session():
 
     return s
 
+
 def main():
     writer = handler()
     reader = handler()
@@ -127,10 +129,9 @@ def main():
             url = data.links['next']['url']
             with open("/var/ossec/logs/okta/okta.log", "a+") as f:
                 for line in data.json():
-                    lids = line['uuid']  # Path to log id
-                    if lids not in reader.db_reader(lid=lids):
+                    if line['uuid'] not in reader.db_reader(lid=line['uuid']):
                         f.write(str(json.dumps(line)) + "\n")
-                        writer.db_writer(lids)
+                        writer.db_writer(line['uuid'])
                     else:
                         pass
             f.close()

@@ -26,6 +26,8 @@ import time
 from datetime import datetime
 from datetime import timedelta
 import sqlite3
+import traceback
+
 
 from db_handler.handler import handler
 
@@ -60,6 +62,7 @@ else:
     logging.error(
         'Config file does not exist. Please create a config file. Template can be found at: '
         'https://github.com/Manufacturing-Consulting-Concepts/oktwah-py/blob/main/app/okta.conf')
+    logging.error("Exiting due to improper application configurations")
     sys.exit(1)
 
 
@@ -136,9 +139,13 @@ def main():
                         pass
             f.close()
         except KeyError:
+            logging.info(KeyError)
             time.sleep(30)  # API rate limiter is breached. Wait 30 seconds and try again.
         except ConnectionResetError:
+            logging.info(ConnectionResetError)
             time.sleep(15)  # Connection reset by peer. Wait 15 seconds and try again.
+        except:
+            logging.error("uncaught exception %s", traceback.format_exc())
 
 
 if __name__ == "__main__":

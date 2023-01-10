@@ -141,8 +141,8 @@ def main():
         except KeyError:
             logging.info(KeyError)
             time.sleep(30)  # API rate limiter is breached. Wait 30 seconds and try again.
-        except ConnectionResetError:
-            logging.info(ConnectionResetError)
+        except ConnectionError:
+            logging.info(ConnectionError)
             time.sleep(15)  # Connection reset by peer. Wait 15 seconds and try again.
         except:
             logging.error("uncaught exception %s", traceback.format_exc())

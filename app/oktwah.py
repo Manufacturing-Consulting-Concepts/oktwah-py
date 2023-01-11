@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 """
-
 This program is used to pull in Okta system logs and send them to Wazuh.  This will be accomplished 
 by using the Okta API to pull in the logs and then send them to a log file where Wazuh will be able
 pull them into the Wazuh server.
@@ -12,7 +11,6 @@ Date: 2022-11-9
 Version 0.0.1
 
 Made with the help of our AI overlord, Copilot =).
-
 """
 import json
 import os
@@ -141,11 +139,14 @@ def main():
         except KeyError:
             logging.info(KeyError)
             time.sleep(30)  # API rate limiter is breached. Wait 30 seconds and try again.
+            continue
         except ConnectionError:
             logging.info(ConnectionError)
             time.sleep(15)  # Connection reset by peer. Wait 15 seconds and try again.
+            continue
         except:
             logging.error("uncaught exception %s", traceback.format_exc())
+            sys.exit(1)
 
 
 if __name__ == "__main__":

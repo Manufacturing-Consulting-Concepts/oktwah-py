@@ -7,6 +7,8 @@ User=oktwah
 Group=oktwah
 WorkingDirectory=/opt/oktwah/app/
 ExecStart=/opt/oktwah/app/env/bin/python /opt/oktwah/app/oktwah.py --conf okta.conf
+Restart=on-failure
+RestartSec=20s
 
 [Install]
 WantedBy=multi-user.target

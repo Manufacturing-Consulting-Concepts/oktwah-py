@@ -1,0 +1,45 @@
+name: Generate SBOM
+on:
+  push:
+    branches:
+      - "*"
+
+env:
+  OWNER: '${{github.repository_owner}}'
+  REPO: '${{ github.event.repository.name }}'
+  FUNCTION_URL: '${{secrets.FUNCTION_URL}}'
+
+jobs:
+  generate_sbom:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+          grype db update
+
+
+      - name: Generate SBOM
+        run: |
+          syft packages file:Pipfile.lock -o syft-json | grype -o cyclonedx-json > sbom-report || echo "No pipfile found" && exit
+
+      - name: Commit SBOM
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add sbom-report
+          git commit -m "Update SBOM" || echo "No changes to commit"
+          git push origin ${GITHUB_REF##*/} || echo "push to branch not allowed" && exit
+          
+      - name: call azure function
+        run: |
+          sudo apt install python3 python3-pip
+          pip3 install requests
+          python3 ./bot.py
+
